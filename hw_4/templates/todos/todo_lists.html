@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Todo Lists</h2>
+<ul class="list-group">
+    {% for list in lists %}
+        <li class="list-group-item">
+            <a href="{% url 'todo_list_detail' list.id %}">{{ list.title }}</a>
+        </li>
+    {% endfor %}
+</ul>
+<h3 class="mt-4">Create New Todo List</h3>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+{% endblock %}
