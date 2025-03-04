@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Table List{% endblock %}
+
+{% block content %}
+<h2>Table List</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Seats</th>
+            <th>Availability</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for table in tables %}
+        <tr>
+            <td>{{ table.number }}</td>
+            <td>{{ table.seats }}</td>
+            <td>{{ table.is_available|yesno:"Yes,No" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
