@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+</head>
+<body>
+    <h1>Главная страница</h1>
+    <a href="/about/">О нас</a>
+    <h2>Список постов</h2>
+    <ul id="post-list">
+        <!-- Список постов будет вставляться сюда через JavaScript -->
+    </ul>
+
+    <script>
+        fetch('/api/posts/')
+            .then(response => response.json())
+            .then(posts => {
+                const postList = document.getElementById('post-list');
+                posts.forEach(post => {
+                    const li = document.createElement('li');
+                    li.textContent = `${post.title}: ${post.content}`;
+                    postList.appendChild(li);
+                });
+            });
+    </script>
+</body>
+<nav>
+    <a href="/">Главная</a>
+    <a href="/posts/">Все посты</a>  <!-- Ссылка на список постов -->
+    <a href="/about/">О нас</a>
+</nav>
+</html>
+
+
+

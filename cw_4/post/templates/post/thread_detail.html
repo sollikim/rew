@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактировать Тему: {{ thread.name }}</title>
+</head>
+<body>
+    <h1>Редактировать Тему: {{ thread.name }}</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Название темы -->
+        <label for="name">Название:</label>
+        <input type="text" id="name" name="name" value="{{ thread.name }}" required>
+        <br><br>
+        
+        <!-- Описание темы -->
+        <label for="description">Описание:</label>
+        <textarea id="description" name="description" required>{{ thread.description }}</textarea>
+        <br><br>
+
+        <!-- Фамилия -->
+        <label for="last_name">Фамилия:</label>
+        <input type="text" id="last_name" name="last_name" required>
+        <br><br>
+
+        <!-- Пол -->
+        <label>Пол:</label>
+        <input type="radio" id="male" name="gender" value="Мужской">
+        <label for="male">Мужской</label>
+        <input type="radio" id="female" name="gender" value="Женский">
+        <label for="female">Женский</label>
+        <br><br>
+
+        <!-- Место работы -->
+        <label for="workplace">Место работы:</label>
+        <input type="text" id="workplace" name="workplace">
+        <br><br>
+
+        <!-- Загрузка фото -->
+        <label for="photo">Фото:</label>
+        <input type="file" id="photo" name="photo">
+        <br><br>
+
+        <!-- Кнопка отправки -->
+        <button type="submit">Сохранить изменения</button>
+    </form>
+
+    <a href="{% url 'threads' %}">Назад к списку</a>
+</body>
+</html>
